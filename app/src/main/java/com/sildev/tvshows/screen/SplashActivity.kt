@@ -1,14 +1,11 @@
 package com.sildev.tvshows.screen
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
+import androidx.appcompat.app.AppCompatActivity
 import com.sildev.tvshows.R
 import com.sildev.tvshows.utils.A_SECOND
-import java.util.Timer
-import java.util.TimerTask
+import java.util.*
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
