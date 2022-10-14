@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/item_favourite"
+        android:icon="@drawable/ic_star"
+        android:title="@string/favourite"
+        app:iconTint="@color/color_text_icons"
+        app:showAsAction="ifRoom|collapseActionView" />
+    <item
+        android:id="@+id/item_search"
+        android:icon="@drawable/ic_search"
+        android:title="@string/search"
+        app:iconTint="@color/color_text_icons"
+        app:showAsAction="ifRoom|collapseActionView" />
+    <item
+        android:id="@+id/item_filter"
+        android:icon="@drawable/ic_filter"
+        android:title="@string/filter"
+        app:iconTint="@color/color_text_icons"
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/item_all"
+                android:title="@string/all"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/item_running"
+                android:title="@string/running"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/item_end"
+                android:title="@string/end"
+                app:showAsAction="never" />
+
+        </menu>
+    </item>
+</menu>
