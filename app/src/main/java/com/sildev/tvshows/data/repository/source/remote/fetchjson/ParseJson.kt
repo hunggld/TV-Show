@@ -5,6 +5,7 @@ import com.sildev.tvshows.data.model.TVShowEntry
 import org.json.JSONObject
 
 class ParseJson {
+
     fun tvShowParseJson(jsonObject: JSONObject): TVShow {
         jsonObject.let {
             val id = it.getInt(TVShowEntry.ID)

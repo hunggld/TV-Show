@@ -15,7 +15,8 @@ import java.util.concurrent.Executors
 class GetJsonFromUrl<T>(
     private val urlString: String,
     private val keyEntity: String,
-    private val listener: OnResultListener<T>
+    private val listener: OnResultListener<T>,
+    private val status: String
 ) {
     private val mExecutor: Executor = Executors.newSingleThreadExecutor()
     private val mHandler = Handler(Looper.getMainLooper())
@@ -27,8 +28,13 @@ class GetJsonFromUrl<T>(
 
     private fun callAPI() {
         mExecutor.execute {
-            val responseJson = getJson(urlString)
-            data = ParseDataWithJson().parseJsonToData(JSONObject(responseJson), keyEntity) as? T
+            val responseJson =
+                getJson(urlString)
+            data = ParseDataWithJson().parseJsonToData(
+                JSONObject(responseJson),
+                keyEntity,
+                status
+            ) as? T
             mHandler.post {
                 try {
                     data?.let { listener.onSuccess(it) }
