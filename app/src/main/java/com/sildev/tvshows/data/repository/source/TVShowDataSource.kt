@@ -9,6 +9,11 @@ interface TVShowDataSource {
     }
 
     interface Remote {
-        fun getTVShows(listener: OnResultListener<MutableList<TVShow>>)
+        fun getTVShows(listener: OnResultListener<MutableList<TVShow>>, status: String)
+        fun loadMoreTVShows(
+            listener: OnResultListener<MutableList<TVShow>>,
+            status: String,
+            page: Int
+        )
     }
 }

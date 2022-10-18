@@ -15,6 +15,30 @@
         android:theme="@style/Theme.TVShows"
         tools:targetApi="31">
         <activity
+            android:name=".screen.FavouriteActivity"
+            android:exported="false"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".screen.SearchActivity"
+            android:exported="false"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".screen.TVShowDetailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".screen.MainActivity"
             android:exported="false"
             android:screenOrientation="portrait" />

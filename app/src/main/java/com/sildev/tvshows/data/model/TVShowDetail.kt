@@ -1,7 +1,5 @@
 package com.sildev.tvshows.data.model
 
-import org.json.JSONArray
-
 data class TVShowDetail(
     val url: String = "",
     val description: String = "",

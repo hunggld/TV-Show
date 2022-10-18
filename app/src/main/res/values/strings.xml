@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">TVShows</string>
+    <string name="running">Running</string>
+    <string name="search">Search</string>
+    <string name="filter">Filter</string>
+    <string name="end">End</string>
+    <string name="all">All</string>
+    <string name="favourite">Favourite</string>
+    <string name="in_development">In development</string>
+    <string name="error_load_tvshow">Error load data TvShow</string>
 </resources>

@@ -4,12 +4,14 @@ import com.sildev.tvshows.data.model.TVShowEntry
 import org.json.JSONObject
 
 class ParseDataWithJson {
-    fun parseJsonToData(jsonObject: JSONObject?, keyEntity: String): Any {
+
+    fun parseJsonToData(jsonObject: JSONObject?, keyEntity: String, status: String): Any {
         val data = mutableListOf<Any>()
         val jsonArray = jsonObject?.getJSONArray(keyEntity)
         for (i in 0 until (jsonArray?.length() ?: 0)) {
             val item = parseJsonToObject(jsonArray?.getJSONObject(i), keyEntity)
-            if (item != null) {
+            val tvShowStatus = jsonArray?.getJSONObject(i)?.getString(TVShowEntry.STATUS)
+            if (item != null && tvShowStatus?.contains(status, true) == true) {
                 data.add(item)
             }
         }
