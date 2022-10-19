@@ -8,4 +8,5 @@
     <string name="favourite">Favourite</string>
     <string name="in_development">In development</string>
     <string name="error_load_tvshow">Error load data TvShow</string>
+    <string name="no_result">No result</string>
 </resources>
