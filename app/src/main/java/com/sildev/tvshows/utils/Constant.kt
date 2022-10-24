@@ -11,3 +11,7 @@ const val KEY_ID_TV_SHOW = "KEY_ID_TV_SHOW"
 const val EMPTY_STRING = ""
 const val SEARCH_URL = "search?"
 const val QUERY_URL = "&q="
+const val DETAIL_URL = "show-details?"
+const val DESCRIPTION_LINE_MAX = 4
+const val FORMAT = "%02d"
+

@@ -67,7 +67,7 @@ class GetJsonFromUrl<T>(
     }
 
     companion object {
-        private const val TIME_OUT = 1000
+        private const val TIME_OUT = 3000
         private const val METHOD_GET = "GET"
     }
 }
