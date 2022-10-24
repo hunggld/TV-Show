@@ -83,7 +83,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
     private fun onClickItem(tvShow: TVShow) {
         val intent = Intent(this@MainActivity, TVShowDetailActivity::class.java)
-        intent.putExtra(KEY_ID_TV_SHOW, tvShow.id)
+        intent.putExtra(KEY_ID_TV_SHOW, tvShow)
         startActivity(intent)
     }
 

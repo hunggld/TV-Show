@@ -9,4 +9,15 @@
     <string name="in_development">In development</string>
     <string name="error_load_tvshow">Error load data TvShow</string>
     <string name="no_result">No result</string>
+    <string name="read_more">Read more</string>
+    <string name="u2022">•</string>
+    <string name="error_load_data">Error load data</string>
+    <string name="website">Website</string>
+    <string name="episode">Episode</string>
+    <string name="started_on">Started on: </string>
+    <string name="min"> Min</string>
+    <string name="read_less">Read less</string>
+    <string name="error">Error</string>
+    <string name="remove_success">Remove from favourite success</string>
+    <string name="add_success">Add to favourite success</string>
 </resources>

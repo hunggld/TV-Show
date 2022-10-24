@@ -15,7 +15,10 @@
     <color name="color_text_primary">#CBD5ED</color>
     <color name="color_text_secondary">#4A5B82</color>
     <color name="color_text_other">#FAD303</color>
+    <color name="color_indicator_active">#FAD303</color>
+    <color name="color_indicator_inactive">#4DFAD303</color>
     <color name="color_theme_extra">#FF5252</color>
     <color name="color_green_light">#5CC34A</color>
     <color name="color_red_light">#F8493C</color>
+    <color name="color_white_trans">#50FFFFFF</color>
 </resources>

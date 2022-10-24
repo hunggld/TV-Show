@@ -8,8 +8,8 @@ data class TVShowDetail(
     val rating: String = "",
     val genres: MutableList<String> = mutableListOf(),
     val pictures: MutableList<String> = mutableListOf(),
-    val episodes: MutableList<Episode> = mutableListOf()
-
+    val episodes: MutableList<Episode> = mutableListOf(),
+    var isFavourite: Boolean = false
 )
 
 object TVShowDetailEntry {

@@ -8,6 +8,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Toast
 import androidx.core.view.isVisible
+import com.sildev.tvshows.R
 import com.sildev.tvshows.data.model.TVShow
 import com.sildev.tvshows.data.repository.SearchRepository
 import com.sildev.tvshows.data.repository.source.remote.SearchRemoteDataSource
@@ -18,8 +19,7 @@ import com.sildev.tvshows.screen.listtvshow.adapter.TvShowAdapter
 import com.sildev.tvshows.utils.A_SECOND
 import com.sildev.tvshows.utils.KEY_ID_TV_SHOW
 import com.sildev.tvshows.utils.base.BaseActivity
-import java.util.Timer
-import java.util.TimerTask
+import java.util.*
 
 class SearchActivity : BaseActivity<ActivitySearchBinding>(ActivitySearchBinding::inflate),
     SearchContract.View {
@@ -60,7 +60,7 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(ActivitySearchBinding
 
     private fun onClickItem(tvShow: TVShow) {
         val intent = Intent(this@SearchActivity, TVShowDetailActivity::class.java)
-        intent.putExtra(KEY_ID_TV_SHOW, tvShow.id)
+        intent.putExtra(KEY_ID_TV_SHOW, tvShow)
         startActivity(intent)
     }
 

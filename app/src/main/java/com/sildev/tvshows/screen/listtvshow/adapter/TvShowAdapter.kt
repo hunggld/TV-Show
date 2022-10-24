@@ -6,7 +6,7 @@ import com.sildev.tvshows.data.model.TVShow
 import com.sildev.tvshows.databinding.ItemTvShowBinding
 import com.sildev.tvshows.utils.base.BaseAdapter
 import com.sildev.tvshows.utils.base.BaseViewHolder
-import com.sildev.tvshows.utils.setImage
+import com.sildev.tvshows.utils.setResource
 
 class TvShowAdapter(private var onClickItem: (TVShow) -> Unit = { _ -> }) :
     BaseAdapter<TVShow, TvShowAdapter.TvShowViewHolder>() {
@@ -26,7 +26,7 @@ class TvShowAdapter(private var onClickItem: (TVShow) -> Unit = { _ -> }) :
                 textStatus.text = itemData.status
                 textStartDate.text = itemData.startDate
                 textNetwork.text = itemData.network
-                itemData.setImage(imageTvShow, root.context)
+                imageTvShow.setResource(itemData.thumbnail, root.context)
             }
         }
     }
