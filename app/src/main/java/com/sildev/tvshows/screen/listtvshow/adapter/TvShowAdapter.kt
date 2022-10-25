@@ -8,16 +8,20 @@ import com.sildev.tvshows.utils.base.BaseAdapter
 import com.sildev.tvshows.utils.base.BaseViewHolder
 import com.sildev.tvshows.utils.setResource
 
-class TvShowAdapter(private var onClickItem: (TVShow) -> Unit = { _ -> }) :
-    BaseAdapter<TVShow, TvShowAdapter.TvShowViewHolder>() {
+class TvShowAdapter(
+    private var onClickItem: (TVShow) -> Unit = { _ -> },
+    private var onLongClickItem: (TVShow) -> Unit = { _ -> }
+) : BaseAdapter<TVShow, TvShowAdapter.TvShowViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TvShowViewHolder {
         val itemView = ItemTvShowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return TvShowViewHolder(itemView, onClickItem)
+        return TvShowViewHolder(itemView, onClickItem, onLongClickItem)
     }
 
     class TvShowViewHolder(
-        private val binding: ItemTvShowBinding, onClickItem: (TVShow) -> Unit
+        private val binding: ItemTvShowBinding,
+        onClickItem: (TVShow) -> Unit,
+        private val onLongClickItem: (TVShow) -> Unit
     ) : BaseViewHolder<TVShow>(binding, onClickItem) {
         override fun onBindData(itemData: TVShow) {
             super.onBindData(itemData)
@@ -27,6 +31,11 @@ class TvShowAdapter(private var onClickItem: (TVShow) -> Unit = { _ -> }) :
                 textStartDate.text = itemData.startDate
                 textNetwork.text = itemData.network
                 imageTvShow.setResource(itemData.thumbnail, root.context)
+            }
+
+            itemView.setOnLongClickListener {
+                onLongClickItem(itemData)
+                true
             }
         }
     }

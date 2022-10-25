@@ -14,4 +14,5 @@ const val QUERY_URL = "&q="
 const val DETAIL_URL = "show-details?"
 const val DESCRIPTION_LINE_MAX = 4
 const val FORMAT = "%02d"
+const val KEY_LINK_TV_SHOW = "KEY_LINK_TV_SHOW"
 
