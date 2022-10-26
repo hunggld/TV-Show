@@ -24,6 +24,7 @@ import com.sildev.tvshows.screen.tvshowdetail.adapter.EpisodeAdapter
 import com.sildev.tvshows.screen.tvshowdetail.adapter.ImageSliderAdapter
 import com.sildev.tvshows.utils.DESCRIPTION_LINE_MAX
 import com.sildev.tvshows.utils.KEY_ID_TV_SHOW
+import com.sildev.tvshows.utils.KEY_LINK_TV_SHOW
 import com.sildev.tvshows.utils.base.BaseActivity
 import com.sildev.tvshows.utils.setResource
 
@@ -61,7 +62,9 @@ class TVShowDetailActivity :
                 onClickReadMore()
             }
             btnWebsite.setOnClickListener {
-                startActivity(Intent(this@TVShowDetailActivity, WebViewActivity::class.java))
+                val intent = Intent(this@TVShowDetailActivity, WebViewActivity::class.java)
+                intent.putExtra(KEY_LINK_TV_SHOW, tvShowDetail.url)
+                startActivity(intent)
             }
             btnEpisode.setOnClickListener {
                 onClickEpisode()
