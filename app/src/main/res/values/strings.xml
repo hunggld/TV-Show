@@ -20,6 +20,9 @@
     <string name="error">Error</string>
     <string name="remove_success">Remove from favourite success</string>
     <string name="add_success">Add to favourite success</string>
+    <string name="warning">Warning</string>
+    <string name="alert_internet">Please check your internet!</string>
+    <string name="ok">OK</string>
     <string name="no">No</string>
     <string name="yes">Yes</string>
     <string name="hold_to_remove_tv_show_from_favourite">Hold to remove TV Show from favourite</string>

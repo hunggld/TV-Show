@@ -1,5 +1,6 @@
 package com.sildev.tvshows.screen.listtvshow
 
+import android.content.Context
 import com.sildev.tvshows.data.model.TVShow
 import com.sildev.tvshows.utils.base.BasePresenter
 
@@ -11,9 +12,10 @@ class SearchContract {
         fun hideProgressLoading()
         fun showTextEmpty()
         fun hideTextEmpty()
+        fun onLostInternet()
     }
 
     interface Presenter : BasePresenter<View> {
-        fun searchByName(key: String)
+        fun searchByName(key: String, context: Context)
     }
 }

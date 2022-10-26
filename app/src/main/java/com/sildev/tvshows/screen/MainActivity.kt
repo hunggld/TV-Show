@@ -1,6 +1,10 @@
 package com.sildev.tvshows.screen
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.widget.Toast
 import androidx.core.view.isVisible
@@ -16,6 +20,8 @@ import com.sildev.tvshows.screen.listtvshow.MainPresenter
 import com.sildev.tvshows.screen.listtvshow.TVShowsContract
 import com.sildev.tvshows.screen.listtvshow.adapter.TvShowAdapter
 import com.sildev.tvshows.utils.KEY_ID_TV_SHOW
+import com.sildev.tvshows.utils.NetworkHelper
+import com.sildev.tvshows.utils.NetworkHelper.getNetworkAlertDialog
 import com.sildev.tvshows.utils.TYPE_ENDED
 import com.sildev.tvshows.utils.TYPE_RUNNING
 import com.sildev.tvshows.utils.base.BaseActivity
@@ -32,6 +38,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             )
         )
     }
+    private val broadcastNetWork = object : BroadcastReceiver() {
+        override fun onReceive(p0: Context, p1: Intent) {
+            if (NetworkHelper.isConnectedToInternet(p0)) {
+                mainPresenter.getTVShows(type, p0)
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,13 +59,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                         linearLayoutManager.findLastCompletelyVisibleItemPosition() == sizeData) {
                         currentPage += 1
                         binding.progressLoadingMore.isVisible = true
-                        mainPresenter.loadMoreTVShows(type, currentPage)
+                        mainPresenter.loadMoreTVShows(type, currentPage, this@MainActivity)
                     }
                 }
             })
         }
         mainPresenter.setView(this)
-        mainPresenter.getTVShows(type)
+        mainPresenter.getTVShows(type, this)
         binding.tbMain.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.item_favourite -> {
@@ -64,17 +77,17 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                 R.id.item_all -> {
                     binding.progressLoading.isVisible = true
                     type = ""
-                    mainPresenter.getTVShows(type)
+                    mainPresenter.getTVShows(type, this)
                 }
                 R.id.item_running -> {
                     binding.progressLoading.isVisible = true
                     type = TYPE_RUNNING
-                    mainPresenter.getTVShows(type)
+                    mainPresenter.getTVShows(type, this)
                 }
                 R.id.item_end -> {
                     binding.progressLoading.isVisible = true
                     type = TYPE_ENDED
-                    mainPresenter.getTVShows(type)
+                    mainPresenter.getTVShows(type, this)
                 }
             }
             true
@@ -104,5 +117,23 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     override fun onLoadMoreError(exception: Exception?) {
         Toast.makeText(this, getString(R.string.error_load_tvshow), Toast.LENGTH_SHORT).show()
     }
+
+    override fun onLostInternet() {
+        val alertInternetDialog = getNetworkAlertDialog(this)
+        alertInternetDialog.show()
+    }
+
+
+    override fun onResume() {
+        val intentFilter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+        registerReceiver(broadcastNetWork, intentFilter)
+        super.onResume()
+    }
+
+    override fun onPause() {
+        unregisterReceiver(broadcastNetWork)
+        super.onPause()
+    }
+
 
 }
