@@ -26,6 +26,7 @@ import com.sildev.tvshows.utils.DESCRIPTION_LINE_MAX
 import com.sildev.tvshows.utils.KEY_ID_TV_SHOW
 import com.sildev.tvshows.utils.KEY_LINK_TV_SHOW
 import com.sildev.tvshows.utils.base.BaseActivity
+import com.sildev.tvshows.utils.NetworkHelper
 import com.sildev.tvshows.utils.setResource
 
 class TVShowDetailActivity :
@@ -54,7 +55,7 @@ class TVShowDetailActivity :
         super.onCreate(savedInstanceState)
 
         detailPresenter.setView(this)
-        detailPresenter.getTvShowDetail(tvShow.id.toString())
+        detailPresenter.getTvShowDetail(tvShow.id.toString(), this)
 
         binding.apply {
             imageBack.setOnClickListener { finish() }
@@ -67,7 +68,7 @@ class TVShowDetailActivity :
                 startActivity(intent)
             }
             btnEpisode.setOnClickListener {
-                onClickEpisode()
+                episodeBottomSheetDialog.show()
             }
             imageFavourite.setOnClickListener {
                 if (tvShowDetail.isFavourite) {
@@ -90,10 +91,6 @@ class TVShowDetailActivity :
             }
         }
 
-    }
-
-    private fun onClickEpisode() {
-        episodeBottomSheetDialog.show()
     }
 
     private fun onClickReadMore() {
@@ -144,6 +141,12 @@ class TVShowDetailActivity :
             R.drawable.background_not_favourite
         }
         binding.imageFavourite.setBackgroundResource(resourceImage)
+    }
+
+    override fun onLostInternet() {
+        val alertInternetDialog = NetworkHelper.getNetworkAlertDialog(this)
+        alertInternetDialog.setPositiveButton(getString(R.string.ok)) { _, _ -> finish() }
+        alertInternetDialog.show()
     }
 
     private fun loadImageSlider(images: MutableList<String>) {

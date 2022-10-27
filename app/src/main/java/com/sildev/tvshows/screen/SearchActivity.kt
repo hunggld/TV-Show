@@ -18,6 +18,7 @@ import com.sildev.tvshows.screen.listtvshow.SearchPresenter
 import com.sildev.tvshows.screen.listtvshow.adapter.TvShowAdapter
 import com.sildev.tvshows.utils.A_SECOND
 import com.sildev.tvshows.utils.KEY_ID_TV_SHOW
+import com.sildev.tvshows.utils.NetworkHelper
 import com.sildev.tvshows.utils.base.BaseActivity
 import java.util.*
 
@@ -48,7 +49,7 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(ActivitySearchBinding
                 timer?.schedule(object : TimerTask() {
                     override fun run() {
                         Handler(Looper.getMainLooper()).post {
-                            searchPresenter.searchByName(p0.toString())
+                            searchPresenter.searchByName(p0.toString(), this@SearchActivity)
                         }
                     }
                 }, A_SECOND)
@@ -86,6 +87,14 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(ActivitySearchBinding
 
     override fun hideTextEmpty() {
         binding.textNoResult.isVisible = false
+    }
+
+    override fun onLostInternet() {
+        val alertInternetDialog = NetworkHelper.getNetworkAlertDialog(this)
+        alertInternetDialog.setPositiveButton(getString(R.string.ok)) { _, _ ->
+            finish()
+        }
+        alertInternetDialog.show()
     }
 
 }

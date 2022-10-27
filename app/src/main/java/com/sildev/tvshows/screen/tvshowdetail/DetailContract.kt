@@ -10,10 +10,11 @@ class DetailContract {
         fun onGetDetailSuccess(detail: TVShowDetail)
         fun onGetDetailError(exception: Exception?)
         fun setFavouriteImage(isFavourite: Boolean)
+        fun onLostInternet()
     }
 
     interface Presenter : BasePresenter<View> {
-        fun getTvShowDetail(id: String)
+        fun getTvShowDetail(id: String,context: Context)
         fun checkIsFavouriteTvShow(context: Context, tvShow: TVShow)
         fun addTvShowFavourite(context: Context, tvShow: TVShow)
         fun removeTvShowFavourite(context: Context, tvShow: TVShow)

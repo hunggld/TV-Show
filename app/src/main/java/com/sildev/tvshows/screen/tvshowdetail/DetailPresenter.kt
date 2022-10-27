@@ -7,23 +7,28 @@ import com.sildev.tvshows.data.model.TVShow
 import com.sildev.tvshows.data.model.TVShowDetail
 import com.sildev.tvshows.data.repository.TvShowDetailRepository
 import com.sildev.tvshows.data.repository.source.remote.OnResultListener
+import com.sildev.tvshows.utils.NetworkHelper
 
 class DetailPresenter(private val tvShowDetailRepository: TvShowDetailRepository) :
     DetailContract.Presenter {
 
     private var mView: DetailContract.View? = null
 
-    override fun getTvShowDetail(id: String) {
-        tvShowDetailRepository.getDetailTvShow(object : OnResultListener<TVShowDetail> {
-            override fun onSuccess(data: TVShowDetail) {
-                mView?.onGetDetailSuccess(data)
-            }
+    override fun getTvShowDetail(id: String, context: Context) {
+        if (NetworkHelper.isConnectedToInternet(context)) {
+            tvShowDetailRepository.getDetailTvShow(object : OnResultListener<TVShowDetail> {
+                override fun onSuccess(data: TVShowDetail) {
+                    mView?.onGetDetailSuccess(data)
+                }
 
-            override fun onError(exception: Exception?) {
-                mView?.onGetDetailError(exception)
-            }
+                override fun onError(exception: Exception?) {
+                    mView?.onGetDetailError(exception)
+                }
 
-        }, id)
+            }, id)
+        } else {
+            mView?.onLostInternet()
+        }
     }
 
     override fun checkIsFavouriteTvShow(context: Context, tvShow: TVShow) {
